@@ -54,18 +54,11 @@ return "category";
 	return mv;
 	}
 	@RequestMapping("category/edit/{id}")
-	public ModelAndView editCategory(@ModelAttribute("category") Category category)
+	public String editCategory(@ModelAttribute("category") Category category)
 	{
-		ModelAndView mv=new ModelAndView();
-		if (categoryDAO.get(category.getId())!= null)
-		{
-		categoryDAO.update(category);
-		mv.addObject("msg","successfully updated");
-		}
-		else
-		{
-			mv.addObject(" error msg"," could not update");
-		}
-		return mv;
+		log.debug("starting of method editcategory");
+		categoryDAO.save(category);
+		log.debug("ending of method editcategory");
+		return "category";
 	}
 	}
